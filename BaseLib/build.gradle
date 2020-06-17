@@ -1,0 +1,88 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+def configs = rootProject.ext.android //android配置拿取config
+def thirdPartyDependencies = rootProject.ext.thirdPartyDependencies
+def netDependencies = rootProject.ext.netDependencies
+def supportDependencies = rootProject.ext.supportDependencies
+def tests = rootProject.ext.tests
+def constraints = rootProject.ext.constraints
+def jetPack = rootProject.ext.jetPack
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}
+android {
+    compileSdkVersion configs.compileSdkVersion
+    buildToolsVersion configs.buildToolsVersion
+
+    /*DataBinding 视图绑定开启*/
+    buildFeatures{
+        dataBinding = true
+    }
+
+    defaultConfig {
+        minSdkVersion configs.minSdkVersion
+        targetSdkVersion configs.targetSdkVersion
+        versionCode configs.versionCode
+        versionName configs.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFile 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = configs.sourceCompatibility
+        targetCompatibility = configs.targetCompatibility
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation tests.junit
+    androidTestImplementation tests.test_junit
+
+    api constraints.constraintlayout
+
+    api jetPack.paging
+//    api jetPack.navigation_fragment
+//    api jetPack.navigation_ui
+    api jetPack.room_runtime
+
+    api supportDependencies.multidex
+    api supportDependencies.appcompat
+    api supportDependencies.design
+    api supportDependencies.lifecycle
+    api supportDependencies.swiperefreshlayout
+//    api supportDependencies.workmanager
+
+    api thirdPartyDependencies.immersionbar
+    api thirdPartyDependencies.immersionbar_components
+    api thirdPartyDependencies.immersionbar_ktx
+    api thirdPartyDependencies.utilcode
+    debugApi thirdPartyDependencies.leakcanary
+    releaseApi thirdPartyDependencies.leakcanary_no_op
+//    api thirdPartyDependencies.rxlifecycle
+//    api thirdPartyDependencies.rxlifecycle_components
+    api thirdPartyDependencies.rxjava
+    api thirdPartyDependencies.rxandroid
+
+    api thirdPartyDependencies.viewpager2
+    api thirdPartyDependencies.material
+
+    api netDependencies.lifecycle
+    api netDependencies.retrofit
+    api netDependencies.okhttp3
+    api netDependencies.okhttp3_logging
+    api netDependencies.gson
+    api netDependencies.retrofit_adapter_rxjava
+}

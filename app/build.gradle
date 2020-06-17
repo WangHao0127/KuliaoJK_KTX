@@ -1,0 +1,133 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+def configs = rootProject.ext.android //android配置拿取config
+
+static def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("GMT+08"))
+}
+
+def apkFileName(variant, versionName) {
+    return "${rootProject.name}-${variant.flavorName}-${variant.buildType.name}-v${versionName}-${releaseTime()}.apk"
+}
+
+android {
+    compileSdkVersion configs.compileSdkVersion
+    buildToolsVersion configs.buildToolsVersion
+
+    /*DataBinding 视图绑定开启*/
+    buildFeatures{
+        dataBinding = true
+    }
+
+    defaultConfig {
+        applicationId "com.kuliao.kuliaojk"
+
+        minSdkVersion configs.minSdkVersion
+        targetSdkVersion configs.targetSdkVersion
+        versionCode configs.versionCode
+        versionName configs.versionName
+
+        /**添加多 dex分包支持 (解决引入jar包的冲突)*/
+        multiDexEnabled true
+
+        ndk {
+            //设置支持的SO库架构
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+        }
+
+        // For Room schema
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("../keystore/debug.keystore")
+            storePassword "android"
+            keyAlias "AndroidDebugKey"
+            keyPassword "android"
+        }
+        release {
+            storeFile file("../keystore/library.keystore")
+            storePassword "123456"
+            keyAlias "forever"
+            keyPassword "123456"
+        }
+    }
+
+    buildTypes {
+        // 开发环境
+        debug {
+            minifyEnabled false
+            applicationIdSuffix = ".debug"
+            matchingFallbacks = ['debug']
+            // API地址
+            buildConfigField("String", "BASE_URL", "\"http://192.168.1.51:9083/\"")
+            // 文件服务器地址
+            buildConfigField("String", "FILE_UPLOAD_URL", "\"http://172.16.0.81:5050/\"")
+            // 错误信息基地址
+            buildConfigField("String", "ERROR_INFO_URL", "\"http://192.168.1.51:9083/\"")
+            // 忘记秘密地址
+            buildConfigField("String", "FORGET_PWD_URL", "\"http://172.16.0.68:8050/\"")
+        }
+
+        release {
+            minifyEnabled true//开启混淆
+            zipAlignEnabled true  //压缩优化
+            shrinkResources true //移出无用资源
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            signingConfig signingConfigs.release
+            matchingFallbacks = ['release']
+
+            // API地址
+            buildConfigField("String", "BASE_URL", "\"https://www.jk5199.cn/\"")
+            // 文件服务器地址
+            buildConfigField("String", "FILE_UPLOAD_URL", "\"http://file.kuliao.net:5444/\"")
+            // 错误信息基地址
+            buildConfigField("String", "ERROR_INFO_URL", "\"https://www.jk5199.cn/\"")
+            // 忘记秘密地址
+            buildConfigField("String", "FORGET_PWD_URL", "\"http://shapi.kuliao.net:7443/\"")
+        }
+    }
+
+    flavorDimensions "env"
+    productFlavors {
+        // 开发
+        develop {}
+        // 官网
+        //offical {}
+    }
+
+    // 渠道号
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [APP_CHANNEL_VALUE: name]
+    }
+    compileOptions {
+        sourceCompatibility = configs.sourceCompatibility
+        targetCompatibility = configs.targetCompatibility
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':BaseLib')
+
+    testImplementation tests.junit
+    androidTestImplementation tests.test_junit
+
+    //room注解，必须放在主module，否则报错
+    annotationProcessor jetPack.room_compiler
+
+}
