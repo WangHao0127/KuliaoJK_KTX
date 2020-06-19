@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <include
+            android:id="@+id/layout"
+            layout="@layout/statusbar_view" />
+
+        <ImageView
+            android:id="@+id/close_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout"
+            app:srcCompat="@drawable/ic_close" />
+
+        <TextView
+            android:id="@+id/title_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_35"
+            android:layout_marginTop="@dimen/dp_50"
+            android:text="@string/login_title"
+            android:textColor="@color/fontPrimary_dark_33"
+            android:textSize="@dimen/sp_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/close_img" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_35"
+            android:layout_marginTop="@dimen/dp_42"
+            android:layout_marginRight="@dimen/dp_35"
+            android:background="@android:color/transparent"
+            android:hint="@string/login_username_hint"
+            android:inputType="text"
+            android:padding="@dimen/dp_5"
+            android:singleLine="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:textColorHint="@color/fontPrimary_hint"
+            android:textCursorDrawable="@drawable/my_cursor"
+            android:textSize="@dimen/sp_15"
+            app:layout_constraintBottom_toTopOf="@id/name_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_login" />
+
+        <View
+            android:id="@+id/name_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_06"
+            android:layout_marginLeft="@dimen/dp_35"
+            android:layout_marginRight="@dimen/dp_35"
+            android:background="@color/lineColor_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_name" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_35"
+            android:layout_marginTop="@dimen/dp_42"
+            android:layout_marginRight="@dimen/dp_35"
+            android:background="@android:color/transparent"
+            android:hint="@string/login_pwd_hint"
+            android:inputType="textPassword"
+            android:padding="@dimen/dp_5"
+            android:singleLine="true"
+            android:textColorHint="@color/fontPrimary_hint"
+            android:textCursorDrawable="@drawable/my_cursor"
+            android:textSize="@dimen/sp_15"
+            app:layout_constraintBottom_toTopOf="@id/password_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name_line" />
+
+        <View
+            android:id="@+id/password_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_06"
+            android:layout_marginLeft="@dimen/dp_35"
+            android:layout_marginRight="@dimen/dp_35"
+            android:background="@color/lineColor_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_password" />
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_35"
+            android:layout_marginTop="@dimen/dp_94"
+            android:layout_marginRight="@dimen/dp_35"
+            android:background="@drawable/bg_solid_f45a26_radius_2"
+            android:text="@string/login"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_13"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/password_line" />
+
+        <TextView
+            android:id="@+id/forget_pwd_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_25"
+            android:padding="@dimen/dp_10"
+            android:text="@string/forget_pwd"
+            android:textColor="@color/fontColor_gray_66"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/login_btn" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

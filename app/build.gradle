@@ -114,6 +114,9 @@ android {
         sourceCompatibility = configs.sourceCompatibility
         targetCompatibility = configs.targetCompatibility
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
@@ -123,11 +126,5 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(':baseLib')
-
-    testImplementation tests.junit
-    androidTestImplementation tests.test_junit
-
-    //room注解，必须放在主module，否则报错
-    annotationProcessor jetPack.room_compiler
 
 }
