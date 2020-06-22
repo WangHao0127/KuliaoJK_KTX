@@ -10,11 +10,11 @@ import androidx.databinding.ViewDataBinding
  */
 abstract class BaseDBVMActivity<DB : ViewDataBinding> : BaseVMActivity() {
 
-    lateinit var mDataBinding: DB
+    lateinit var mBinding: DB
 
     override fun setContentLayout() {
-        mDataBinding = DataBindingUtil.setContentView(this, getLayoutId())
-        mDataBinding.lifecycleOwner = this
+        mBinding = DataBindingUtil.setContentView(this, getLayoutId())
+        mBinding.lifecycleOwner = this
         initViewModelAction()
         initView()
         initData()
@@ -22,7 +22,7 @@ abstract class BaseDBVMActivity<DB : ViewDataBinding> : BaseVMActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mDataBinding.unbind()
+        mBinding.unbind()
     }
 
 }

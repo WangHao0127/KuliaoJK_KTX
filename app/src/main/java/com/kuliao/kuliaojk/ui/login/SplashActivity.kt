@@ -3,10 +3,7 @@ package com.kuliao.kuliaojk.ui.login
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.kuliao.baselib.base.activity.BaseDBActivity
-import com.kuliao.baselib.ext.go
 import com.kuliao.baselib.ext.goAndFinish
-import com.kuliao.baselib.ext.successToast
-import com.kuliao.kuliaojk.MainActivity
 import com.kuliao.kuliaojk.R.*
 import com.kuliao.kuliaojk.databinding.ActivitySplashBinding
 

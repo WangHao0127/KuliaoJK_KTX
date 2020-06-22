@@ -1,7 +1,9 @@
-package com.kuliao.baselib
+package com.kuliao.kuliaojk
 
 import android.app.Application
 import android.content.ContextWrapper
+import com.kuliao.kuliaojk.di.appModule
+import org.koin.core.context.startKoin
 
 /**
  * Author: WangHao
@@ -15,7 +17,9 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         mApplication = this
+        startKoin { modules(appModule) }
     }
+
 
 }
 

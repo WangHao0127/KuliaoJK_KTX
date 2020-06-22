@@ -1,14 +1,12 @@
 package com.kuliao.baselib.base.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.gyf.immersionbar.ImmersionBar
+import com.blankj.utilcode.util.ToastUtils
 import com.kuliao.baselib.base.vm.BaseViewModel
 import com.kuliao.baselib.base.vm.ErrorState
 import com.kuliao.baselib.base.vm.LoadState
 import com.kuliao.baselib.base.vm.SuccessState
-import com.kuliao.baselib.ext.errorToast
 
 /**
  * Author: WangHao
@@ -31,7 +29,7 @@ abstract class BaseVMActivity : BaseActivity() {
                     is ErrorState -> {
                         dismissLoading()
                         stateActionEvent.message?.apply {
-                            errorToast(this)
+                            ToastUtils.showShort(this)
                             handleError()
                         }
                     }

@@ -27,12 +27,14 @@ class AdvertisementActivity : BaseDBActivity<ActivityAdvertisementBinding>() {
             object : CircleProgressbar.OnCountdownProgressListener {
                 override fun onProgress(what: Int, progress: Int) {
                     if (progress <= 0) {
-                        go<MainActivity>()
+                        goAndFinish<MainActivity>()
                     }
                 }
             })
         mBinding.cbBar.start()
-        mBinding.setClick { goAndFinish<MainActivity>() }
+        mBinding.setClick {
+            goAndFinish<MainActivity>()
+        }
     }
 
     override fun isStatusBarOverlap() = true

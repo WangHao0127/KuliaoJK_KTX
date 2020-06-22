@@ -72,10 +72,13 @@ dependencies {
     api 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
     api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     api 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
-
+    //koin(依赖注入)
+    api "org.koin:koin-androidx-scope:2.0.1"
+    api "org.koin:koin-androidx-viewmodel:2.0.1"
+    api "org.koin:koin-androidx-ext:2.0.1"
 
     //第三方控件
-    api 'com.github.GrenderG:Toasty:1.4.2'//精美的Toast工具类
+    api 'com.blankj:utilcodex:1.28.3' //万能工具类
 
     api thirdPartyDependencies.immersionbar
     api thirdPartyDependencies.immersionbar_components
