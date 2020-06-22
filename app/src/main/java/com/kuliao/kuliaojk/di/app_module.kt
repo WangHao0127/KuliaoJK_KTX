@@ -1,6 +1,9 @@
 package com.kuliao.kuliaojk.di
 
+import com.kuliao.kuliaojk.vm.CartViewModel
 import com.kuliao.kuliaojk.vm.HomeViewModel
+import com.kuliao.kuliaojk.vm.MyViewModel
+import com.kuliao.kuliaojk.vm.SortViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -10,7 +13,18 @@ import org.koin.dsl.module
  * Description:
  */
 val viewModelModule = module {
-    viewModel { HomeViewModel() }
+    viewModel {
+        HomeViewModel()
+    }
+    viewModel {
+        SortViewModel()
+    }
+    viewModel {
+        CartViewModel()
+    }
+    viewModel {
+        MyViewModel()
+    }
 }
 
 

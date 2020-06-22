@@ -6,11 +6,14 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.kuliao.baselib.base.activity.BaseDBActivity
 import com.kuliao.kuliaojk.databinding.ActivityMainBinding
+import com.kuliao.kuliaojk.ui.cart.CartFragment
 import com.kuliao.kuliaojk.ui.home.HomeFragment
+import com.kuliao.kuliaojk.ui.my.MyFragment
+import com.kuliao.kuliaojk.ui.sort.SortFragment
 import kotlinx.android.synthetic.main.tab_text_icon.*
 import kotlinx.android.synthetic.main.tab_text_icon.view.*
 
-class MainActivity: BaseDBActivity<ActivityMainBinding>() {
+class MainActivity : BaseDBActivity<ActivityMainBinding>() {
 
     val titles =
         arrayOf(R.string.home_main, R.string.sort_main, R.string.cart_main, R.string.my_main)
@@ -31,9 +34,9 @@ class MainActivity: BaseDBActivity<ActivityMainBinding>() {
             override fun createFragment(position: Int): Fragment =
                 when (position) {
                     0 -> HomeFragment()
-                    1 -> HomeFragment()
-                    2 -> HomeFragment()
-                    else -> HomeFragment()
+                    1 -> SortFragment()
+                    2 -> CartFragment()
+                    else -> MyFragment()
                 }
 
         }

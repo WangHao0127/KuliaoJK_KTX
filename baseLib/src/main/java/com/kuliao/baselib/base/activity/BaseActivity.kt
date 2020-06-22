@@ -1,8 +1,12 @@
 package com.kuliao.baselib.base.activity
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isNotEmpty
 import com.gyf.immersionbar.ImmersionBar
+import kotlinx.android.synthetic.main.common_app_bar.*
+import kotlinx.android.synthetic.main.statusbar_view.*
 
 /**
  * Author: WangHao
@@ -19,6 +23,7 @@ abstract class BaseActivity : AppCompatActivity() {
         if (isImmersionBarEnabled()) {
             initImmersionBar()
         }
+        fitsLayoutOverlap()
         setContentLayout()
     }
 
@@ -34,6 +39,25 @@ abstract class BaseActivity : AppCompatActivity() {
             mImmersionBar.statusBarDarkFont(true).keyboardEnable(true).init()
         } else { //如果手机支不支持状态栏字体变色
             mImmersionBar.statusBarDarkFont(true, 0.2f).keyboardEnable(true).init()
+        }
+    }
+
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        //旋转屏幕要重新设置布局与状态栏重叠,因为旋转屏幕有可能使状态栏高度不一样，
+        // 如果你是使用的静态方法修复的，所以要重新调用修复
+        fitsLayoutOverlap()
+    }
+
+    private fun fitsLayoutOverlap() {
+        title_bar?.let {//有标题栏，则不用额外布局填充
+            ImmersionBar.setTitleBar(this, title_bar)
+        }
+        status_bar_view?.let {
+            if (!isStatusBarOverlap()) {//用额外布局填充
+                ImmersionBar.setStatusBarView(this, status_bar_view)
+            }
         }
     }
 
