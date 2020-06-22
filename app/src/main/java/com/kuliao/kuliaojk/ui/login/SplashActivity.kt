@@ -3,7 +3,10 @@ package com.kuliao.kuliaojk.ui.login
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.kuliao.baselib.base.activity.BaseDBActivity
+import com.kuliao.baselib.ext.go
+import com.kuliao.baselib.ext.goAndFinish
 import com.kuliao.baselib.ext.successToast
+import com.kuliao.kuliaojk.MainActivity
 import com.kuliao.kuliaojk.R.*
 import com.kuliao.kuliaojk.databinding.ActivitySplashBinding
 
@@ -25,19 +28,19 @@ class SplashActivity : BaseDBActivity<ActivitySplashBinding>(),
     }
 
     override fun initData() {
-        mDataBinding.rlRoot.animation = mAnimation
+        mBinding.rlRoot.animation = mAnimation
     }
 
     override fun onAnimationRepeat(animation: Animation?) {
-       print("")
+
     }
 
     override fun onAnimationEnd(animation: Animation?) {
-        successToast("成功啦")
+        goAndFinish<AdvertisementActivity>()
     }
 
     override fun onAnimationStart(animation: Animation?) {
-        print("")
+
     }
 
 }

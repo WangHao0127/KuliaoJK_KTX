@@ -1,11 +1,20 @@
 package com.kuliao.kuliaojk
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.kuliao.baselib.base.activity.BaseDBActivity
+import com.kuliao.baselib.base.activity.BaseDBVMActivity
+import com.kuliao.baselib.base.vm.BaseViewModel
+import com.kuliao.kuliaojk.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : BaseDBActivity<ActivityMainBinding>() {
+
+
+    override fun getLayoutId() = R.layout.activity_main
+
+    override fun initView() {
+
+    }
+
+    override fun initData() {
+
     }
 }

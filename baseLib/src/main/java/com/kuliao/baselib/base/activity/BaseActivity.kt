@@ -41,7 +41,7 @@ abstract class BaseActivity : AppCompatActivity() {
     fun isImmersionBarEnabled() = true
 
     /*是否和状态栏重叠：默认不重叠*/
-    fun isStatusBarOverlap() = false
+    open fun isStatusBarOverlap() = false
 
     abstract fun getLayoutId(): Int
 

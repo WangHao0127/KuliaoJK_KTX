@@ -26,6 +26,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/splash_logo" />
 
+        <com.kuliao.kuliaojk.weight.CircleProgressbar
+            android:id="@+id/cb_bar"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_40"
+            android:layout_marginRight="@dimen/dp_12"
+            android:onClick="@{click}"
+            android:text="@string/skip"
+            android:textColor="@color/skip_color"
+            android:textSize="@dimen/sp_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
