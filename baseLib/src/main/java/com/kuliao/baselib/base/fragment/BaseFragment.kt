@@ -22,10 +22,10 @@ abstract class BaseFragment : Fragment() {
 
     protected var mRootView: View? = null
 
-    lateinit var mActivity: AppCompatActivity
+    private lateinit var mActivity: AppCompatActivity
 
-    protected var statusBarView: View? = null
-    protected var toolbar: RelativeLayout? = null
+    private var statusBarView: View? = null
+    private var toolbar: RelativeLayout? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -53,7 +53,7 @@ abstract class BaseFragment : Fragment() {
         setContentLayout()
     }
 
-    open abstract fun setContentLayout()
+    abstract fun setContentLayout()
 
     abstract fun getLayoutRes(): Int
 

@@ -1,5 +1,6 @@
 package com.kuliao.kuliaojk.ui.my
 
+import com.blankj.utilcode.util.LogUtils
 import com.kuliao.baselib.base.fragment.BaseDBVMFragment
 import com.kuliao.kuliaojk.R
 import com.kuliao.kuliaojk.databinding.FragmentMyBinding
@@ -23,4 +24,7 @@ class MyFragment : BaseDBVMFragment<FragmentMyBinding>() {
 
     override fun getLayoutRes() = R.layout.fragment_my
 
+    override fun initData() {
+        LogUtils.d("MyFragment")
+    }
 }

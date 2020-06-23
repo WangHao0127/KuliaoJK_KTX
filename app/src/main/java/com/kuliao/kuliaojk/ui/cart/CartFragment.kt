@@ -1,5 +1,6 @@
 package com.kuliao.kuliaojk.ui.cart
 
+import com.blankj.utilcode.util.LogUtils
 import com.kuliao.baselib.base.fragment.BaseDBVMFragment
 import com.kuliao.kuliaojk.R
 import com.kuliao.kuliaojk.databinding.FragmentCartBinding
@@ -26,8 +27,6 @@ class CartFragment : BaseDBVMFragment<FragmentCartBinding>() {
     }
 
     override fun initData() {
-
+        LogUtils.d("CartFragment")
     }
-
-
 }

@@ -1,5 +1,6 @@
 package com.kuliao.kuliaojk.ui.home
 
+import com.blankj.utilcode.util.LogUtils
 import com.kuliao.baselib.base.fragment.BaseDBVMFragment
 import com.kuliao.kuliaojk.R
 import com.kuliao.kuliaojk.databinding.FragmentHomeBinding
@@ -24,8 +25,7 @@ class HomeFragment : BaseDBVMFragment<FragmentHomeBinding>() {
     }
 
     override fun initData() {
-
+        LogUtils.d("HomeFragment")
     }
-
 
 }

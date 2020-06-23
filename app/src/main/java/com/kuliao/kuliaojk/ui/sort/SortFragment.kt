@@ -1,5 +1,6 @@
 package com.kuliao.kuliaojk.ui.sort
 
+import com.blankj.utilcode.util.LogUtils
 import com.kuliao.baselib.base.fragment.BaseDBVMFragment
 import com.kuliao.kuliaojk.R
 import com.kuliao.kuliaojk.databinding.FragmentSortBinding
@@ -22,5 +23,9 @@ class SortFragment : BaseDBVMFragment<FragmentSortBinding>() {
     }
 
     override fun getLayoutRes() = R.layout.fragment_sort
+
+    override fun initData() {
+        LogUtils.d("SortFragment")
+    }
 
 }

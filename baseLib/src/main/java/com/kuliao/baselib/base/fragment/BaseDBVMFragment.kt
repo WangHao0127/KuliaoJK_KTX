@@ -38,6 +38,10 @@ abstract class BaseDBVMFragment<DB : ViewDataBinding> : BaseFragment() {
 
     override fun setContentLayout() {
         initViewModelAction()
+    }
+
+    override fun onResume() {
+        super.onResume()
         initView()
         initData()
     }
@@ -64,9 +68,7 @@ abstract class BaseDBVMFragment<DB : ViewDataBinding> : BaseFragment() {
 
     abstract fun initView()
 
-    open fun initData() {
-
-    }
+    abstract fun initData()
 
     open fun showLoading() {
 
