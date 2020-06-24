@@ -78,8 +78,8 @@ dependencies {
     api 'org.koin:koin-androidx-ext:2.0.1'
 
     //第三方控件
-    api 'com.blankj:utilcodex:1.28.3' //万能工具类
-
+    api thirdPartyDependencies.utilcode //万能工具类
+    api supportDependencies.swiperefreshlayout
     api thirdPartyDependencies.immersionbar
     api thirdPartyDependencies.immersionbar_components
     api thirdPartyDependencies.immersionbar_ktx

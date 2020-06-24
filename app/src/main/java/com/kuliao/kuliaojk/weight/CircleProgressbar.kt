@@ -15,7 +15,7 @@ import kotlin.properties.Delegates
  * Created On: 2020/06/19  17:21
  * Description:
  */
-class CircleProgressbar constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+class CircleProgressbar(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     AppCompatTextView(context, attrs, defStyleAttr) {
 
     //外部轮廓的颜色
@@ -245,6 +245,7 @@ class CircleProgressbar constructor(context: Context, attrs: AttributeSet?, defS
 
         //画内部背景
         val circleColor = inCircleColors.getColorForState(drawableState, 0)
+
         mPaint.style = Paint.Style.FILL
         mPaint.color = circleColor
         canvas.drawCircle(

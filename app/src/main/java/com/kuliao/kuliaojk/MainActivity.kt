@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.tab_text_icon.view.*
 
 class MainActivity : BaseDBActivity<ActivityMainBinding>() {
 
-    val titles =
+    private val titles =
         arrayOf(R.string.home_main, R.string.sort_main, R.string.cart_main, R.string.my_main)
     private val pics = arrayOf(
         R.drawable.tab_home_selector, R.drawable.tab_sort_selector, R.drawable.tab_cart_selector,
@@ -22,22 +22,20 @@ class MainActivity : BaseDBActivity<ActivityMainBinding>() {
     )
 
     private val mMediator: TabLayoutMediator by lazy {
-        TabLayoutMediator(mBinding.tabLayout, mBinding.vp,
-            TabLayoutMediator.TabConfigurationStrategy { tab, position ->
-                val tabView = View.inflate(this@MainActivity, R.layout.tab_text_icon, null)
-
-                tabView.tv.text = getString(titles[position])
-                tabView.img.setImageResource(pics[position])
-                tab.customView = tabView
-            })
+        TabLayoutMediator(mBinding.tabLayout, mBinding.vp) { tab, position ->
+            val tabView = View.inflate(this@MainActivity, R.layout.tab_text_icon, null)
+            tabView.tv.text = getString(titles[position])
+            tabView.img.setImageResource(pics[position])
+            tab.customView = tabView
+        }
     }
 
     override fun getLayoutId() = R.layout.activity_main
 
     override fun initView() {
-        with(mBinding.vp) {
-            isUserInputEnabled = false
-            adapter = object : FragmentStateAdapter(this@MainActivity) {
+        mBinding.vp.let {
+            it.isUserInputEnabled = false
+            it.adapter = object : FragmentStateAdapter(this@MainActivity) {
                 override fun getItemCount() = titles.size
 
                 override fun createFragment(position: Int): Fragment =
@@ -58,6 +56,6 @@ class MainActivity : BaseDBActivity<ActivityMainBinding>() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mMediator.let { it.detach() }
+        mMediator.detach()
     }
 }
