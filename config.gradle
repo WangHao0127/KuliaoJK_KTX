@@ -57,8 +57,8 @@ ext{
             retrofit_adapter_rxjava:"com.squareup.retrofit2:adapter-rxjava2:2.9.0",
             okhttp3  : "com.squareup.okhttp3:okhttp:4.7.2",
             okhttp3_logging:"com.squareup.okhttp3:logging-interceptor:4.7.2",
-            gson     : "com.google.code.gson:gson:2.8.6"
-
+            gson     : "com.google.code.gson:gson:2.8.6",
+            retrofit2_converter:"com.squareup.retrofit2:converter-gson:2.7.1"
     ]
 
     thirdPartyDependencies = [

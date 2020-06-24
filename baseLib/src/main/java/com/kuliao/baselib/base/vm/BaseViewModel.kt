@@ -39,14 +39,14 @@ open class BaseViewModel : ViewModel() {
         }
     }
 
-    fun <T> emit(cancel: Cancel, block: EmitBlock<T>): LiveData<T> = liveData {
+    fun <T> emit(cancel: Cancel?=null, block: EmitBlock<T>): LiveData<T> = liveData {
         try {
             mStateLiveData.value = LoadState
             block
             mStateLiveData.value = SuccessState
         } catch (e: Exception) {
             when (e) {
-                is CancellationException -> cancel.invoke(e)
+                is CancellationException -> cancel?.invoke(e)
                 else -> mStateLiveData.value = ErrorState(e.message)
             }
         }

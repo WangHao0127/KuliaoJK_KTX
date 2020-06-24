@@ -77,6 +77,10 @@ dependencies {
     api 'org.koin:koin-androidx-viewmodel:2.0.1'
     api 'org.koin:koin-androidx-ext:2.0.1'
 
+    api jetPack.room_runtime //room数据库
+    api netDependencies.retrofit
+    api netDependencies.retrofit2_converter
+    api netDependencies.okhttp3_logging
     //第三方控件
     api thirdPartyDependencies.utilcode //万能工具类
     api supportDependencies.swiperefreshlayout

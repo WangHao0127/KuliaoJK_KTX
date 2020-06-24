@@ -127,4 +127,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(':baseLib')
 
+    //room注解，必须放在主module，否则报错
+    annotationProcessor jetPack.room_compiler
 }
