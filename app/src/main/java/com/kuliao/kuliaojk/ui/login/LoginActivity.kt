@@ -35,6 +35,7 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding>() {
             mViewModel.getUser(name, password).observe(this, Observer<User> {
                 ToastUtils.showShort(it.userName)
             })
+
         }
     }
 }

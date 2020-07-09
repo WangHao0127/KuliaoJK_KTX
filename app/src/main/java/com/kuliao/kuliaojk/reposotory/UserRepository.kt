@@ -2,6 +2,7 @@ package com.kuliao.kuliaojk.reposotory
 
 import com.kuliao.kuliaojk.api.UserApi
 import com.kuliao.kuliaojk.dao.UserDao
+import com.kuliao.kuliaojk.data.User
 
 /**
  * Author: WangHao
@@ -10,8 +11,5 @@ import com.kuliao.kuliaojk.dao.UserDao
  */
 class UserRepository(private val mUserApi: UserApi, val mUserDao: UserDao) {
 
-
-    suspend fun getUserInfo(etName:String,pwd:String)=mUserApi.login()
-
-
+    suspend fun getUserInfo(etName:String,pwd:String):User=mUserApi.login(etName,pwd)
 }

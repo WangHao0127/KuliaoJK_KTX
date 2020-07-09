@@ -42,7 +42,7 @@ open class BaseViewModel : ViewModel() {
     fun <T> emit(cancel: Cancel?=null, block: EmitBlock<T>): LiveData<T> = liveData {
         try {
             mStateLiveData.value = LoadState
-            block
+            emit(block())
             mStateLiveData.value = SuccessState
         } catch (e: Exception) {
             when (e) {
