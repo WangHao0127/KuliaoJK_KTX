@@ -1,6 +1,7 @@
 package com.kuliao.kuliaojk.valid
 
 import android.content.Context
+import android.content.Intent
 import com.kuliao.baselib.ext.go
 import com.kuliao.baselib.valid.Valid
 import com.kuliao.kuliaojk.ui.login.LoginActivity
@@ -19,7 +20,8 @@ class LoginValid(context: Context) : Valid {
     }
 
     override fun doValid() {
-        go<LoginActivity>(mContext)
+//        go<LoginActivity>(mContext)
+        mContext.startActivity(Intent(mContext, LoginActivity::class.java))
     }
 
 }

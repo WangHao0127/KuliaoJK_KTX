@@ -4,8 +4,7 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
-import android.view.MotionEvent.ACTION_MOVE
-import android.view.MotionEvent.ACTION_UP
+import android.view.MotionEvent.*
 import android.view.View
 import android.view.ViewGroup
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -27,6 +26,9 @@ class SwipeRefreshView(context: Context, attrs: AttributeSet?) :
     private val mScrollRate = 0.7F //缩放系数，缩放系数越大，变化的越大
     private val mReplyRate = 0.5F//回调系数，越大，回调越慢
 
+    private var mYDown: Int = 0
+    private var mLastY = 0
+
     constructor(context: Context) : this(context, attrs = null)
 
     override fun onFinishInflate() {
@@ -41,6 +43,20 @@ class SwipeRefreshView(context: Context, attrs: AttributeSet?) :
                 mZoomView = it
             }
         }
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        when (ev?.action) {
+            ACTION_DOWN ->
+                mYDown = ev.rawY.toInt()
+            ACTION_MOVE -> {
+                mLastY = ev.rawY.toInt()
+                if (mYDown > mLastY) {
+                    return false
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev)
     }
 
     override fun onTouchEvent(ev: MotionEvent): Boolean {

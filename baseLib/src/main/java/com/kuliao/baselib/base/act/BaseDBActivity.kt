@@ -1,25 +1,24 @@
-package com.kuliao.baselib.base.activity
+package com.kuliao.baselib.base.act
 
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
 /**
  * Author: WangHao
- * Created On: 2020/06/17  15:03
- * Description:包含DataBinding的activity基类
+ * Created On: 2020/07/09  13:43
+ * Description:
  */
 abstract class BaseDBActivity<DB : ViewDataBinding> : BaseActivity() {
 
     lateinit var mBinding: DB
 
-    override fun setContentLayout() {
+    override fun initDBorVM() {
         mBinding = DataBindingUtil.setContentView(this, getLayoutId())
-        initView()
-        initData()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         mBinding.unbind()
     }
+
 }

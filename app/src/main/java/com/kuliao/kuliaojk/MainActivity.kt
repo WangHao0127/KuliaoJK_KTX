@@ -4,7 +4,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import com.kuliao.baselib.base.activity.BaseDBActivity
+import com.kuliao.baselib.base.act.BaseDBActivity
 import com.kuliao.kuliaojk.databinding.ActivityMainBinding
 import com.kuliao.kuliaojk.ui.cart.CartFragment
 import com.kuliao.kuliaojk.ui.home.HomeFragment
@@ -32,7 +32,7 @@ class MainActivity : BaseDBActivity<ActivityMainBinding>() {
 
     override fun getLayoutId() = R.layout.activity_main
 
-    override fun initView() {
+    override fun initViewsAndEvents() {
         mBinding.vp.let {
             it.isUserInputEnabled = false
             it.adapter = object : FragmentStateAdapter(this@MainActivity) {
@@ -48,10 +48,6 @@ class MainActivity : BaseDBActivity<ActivityMainBinding>() {
             }
         }
         mMediator.attach()
-    }
-
-    override fun initData() {
-
     }
 
     override fun onDestroy() {

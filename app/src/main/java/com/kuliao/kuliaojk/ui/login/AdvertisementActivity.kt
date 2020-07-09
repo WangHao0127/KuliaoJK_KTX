@@ -1,7 +1,6 @@
 package com.kuliao.kuliaojk.ui.login
 
-import com.kuliao.baselib.base.activity.BaseDBActivity
-import com.kuliao.baselib.ext.go
+import com.kuliao.baselib.base.act.BaseDBActivity
 import com.kuliao.baselib.ext.goAndFinish
 import com.kuliao.kuliaojk.MainActivity
 import com.kuliao.kuliaojk.R.layout
@@ -17,11 +16,7 @@ class AdvertisementActivity : BaseDBActivity<ActivityAdvertisementBinding>() {
 
     override fun getLayoutId() = layout.activity_advertisement
 
-    override fun initView() {
-
-    }
-
-    override fun initData() {
+    override fun initViewsAndEvents() {
         mBinding.cbBar.setCountdownProgressListener(
             0,
             object : CircleProgressbar.OnCountdownProgressListener {

@@ -2,7 +2,7 @@ package com.kuliao.kuliaojk.ui.login
 
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ToastUtils
-import com.kuliao.baselib.base.activity.BaseDBVMActivity
+import com.kuliao.baselib.base.act.BaseVMActivity
 import com.kuliao.baselib.base.vm.BaseViewModel
 import com.kuliao.kuliaojk.R
 import com.kuliao.kuliaojk.data.User
@@ -16,7 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * Created On: 2020/06/24  14:24
  * Description:
  */
-class LoginActivity : BaseDBVMActivity<ActivityLoginBinding>() {
+class LoginActivity : BaseVMActivity<ActivityLoginBinding>() {
 
     override fun getViewModel(): BaseViewModel = mViewModel
 
@@ -26,23 +26,15 @@ class LoginActivity : BaseDBVMActivity<ActivityLoginBinding>() {
 
     override fun getLayoutId() = R.layout.activity_login
 
-    override fun initView() {
-
-    }
-
-    override fun initData() {
-
+    override fun initViewsAndEvents() {
         mBinding.loginBtn.setOnClickListener {
 
-            val name= mBinding.etName.text.toString()
+            val name = mBinding.etName.text.toString()
             val password = mBinding.etPassword.text.toString()
 
-            mViewModel.getUser(name,password).observe(this, Observer<User> {
+            mViewModel.getUser(name, password).observe(this, Observer<User> {
                 ToastUtils.showShort(it.userName)
             })
         }
-
-
-
     }
 }

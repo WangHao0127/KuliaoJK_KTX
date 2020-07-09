@@ -1,6 +1,7 @@
-package com.kuliao.baselib.base.activity
+package com.kuliao.baselib.base.act
 
-import android.os.Bundle
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ToastUtils
 import com.kuliao.baselib.base.vm.BaseViewModel
@@ -10,17 +11,20 @@ import com.kuliao.baselib.base.vm.SuccessState
 
 /**
  * Author: WangHao
- * Created On: 2020/06/17  15:14
- * Description: 让BaseDBVMActivity继承的类
+ * Created On: 2020/07/09  13:41
+ * Description:
  */
-abstract class BaseVMActivity : BaseActivity() {
+abstract class BaseVMActivity<DB : ViewDataBinding> : BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentLayout()
+    lateinit var mBinding: DB
+
+    override fun initDBorVM() {
+        mBinding = DataBindingUtil.setContentView(this, getLayoutId())
+        mBinding.lifecycleOwner = this
+        initViewModelAction()
     }
 
-    protected fun initViewModelAction() {
+    private fun initViewModelAction() {
         getViewModel().let {
             it.mStateLiveData.observe(this, Observer { stateActionEvent ->
                 when (stateActionEvent) {
@@ -38,15 +42,7 @@ abstract class BaseVMActivity : BaseActivity() {
         }
     }
 
-
     abstract fun getViewModel(): BaseViewModel
-
-    override fun setContentLayout() {
-        setContentView(getLayoutId())
-        initViewModelAction()
-        initView()
-        initData()
-    }
 
     open fun showLoading() {
 
@@ -59,4 +55,10 @@ abstract class BaseVMActivity : BaseActivity() {
     open fun handleError() {
 
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mBinding.unbind()
+    }
+
 }

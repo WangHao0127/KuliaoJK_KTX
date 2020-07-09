@@ -12,7 +12,8 @@
         tools:context="com.kuliao.kuliaojk.ui.home.HomeFragment">
 
         <!--添加这句是为了让与状态栏不重叠，必须固定id-->
-        <include layout="@layout/statusbar_view"/>
+        <include
+            layout="@layout/statusbar_view"/>
 
         <!-- TODO: Update blank fragment layout -->
         <TextView
