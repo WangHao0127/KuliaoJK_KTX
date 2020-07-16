@@ -33,9 +33,9 @@ class MainActivity : BaseDBActivity<ActivityMainBinding>() {
     override fun getLayoutId() = R.layout.activity_main
 
     override fun initViewsAndEvents() {
-        mBinding.vp.let {
-            it.isUserInputEnabled = false
-            it.adapter = object : FragmentStateAdapter(this@MainActivity) {
+        mBinding.vp.run {
+            isUserInputEnabled = false
+            adapter = object : FragmentStateAdapter(this@MainActivity) {
                 override fun getItemCount() = titles.size
 
                 override fun createFragment(position: Int): Fragment =

@@ -33,7 +33,7 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding>() {
             val password = mBinding.etPassword.text.toString()
 
             mViewModel.getUser(name, password).observe(this, Observer<User> {
-                ToastUtils.showShort(it.userName)
+                ToastUtils.showShort(it.nickName)
             })
 
         }

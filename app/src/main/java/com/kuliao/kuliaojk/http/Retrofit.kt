@@ -1,7 +1,6 @@
 package com.kuliao.kuliaojk.http
 
 import android.util.Log
-import com.blankj.utilcode.util.LogUtils
 import com.google.gson.GsonBuilder
 import com.kuliao.kuliaojk.BuildConfig
 import com.kuliao.kuliaojk.BuildConfig.BASE_URL
@@ -20,7 +19,8 @@ val httpLoggingInterceptor = HttpLoggingInterceptor(object : HttpLoggingIntercep
         Log.e(TAG, message)
     }
 }).also {
-    it.level = HttpLoggingInterceptor.Level.BODY
+    it.level =
+        if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
 }
 
 val okHttpClient = OkHttpClient.Builder()
@@ -35,7 +35,7 @@ val okHttpClient = OkHttpClient.Builder()
     }.build()
 
 val retrofit: Retrofit = Retrofit.Builder()
-    .addConverterFactory(GsonConverterFactory.create(GsonBuilder().serializeNulls().create()))
+    .addConverterFactory(GoonConverterFactory.create(GsonBuilder().serializeNulls().create()))
     .client(okHttpClient)
     .baseUrl(BASE_URL)
     .build()
