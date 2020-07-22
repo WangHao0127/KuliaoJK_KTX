@@ -11,5 +11,8 @@ import com.kuliao.kuliaojk.data.User
  */
 class UserRepository(private val mUserApi: UserApi, val mUserDao: UserDao) {
 
-    suspend fun getUserInfo(etName:String,pwd:String):User=mUserApi.login(etName,pwd)
+    suspend fun getUserInfo(etName: String, pwd: String): User = mUserApi.login(etName, pwd)
+
+
+    suspend fun saveLocalUser(user: User) = mUserDao.insert(user)
 }

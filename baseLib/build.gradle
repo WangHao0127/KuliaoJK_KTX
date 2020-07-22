@@ -78,11 +78,11 @@ dependencies {
     api 'org.koin:koin-androidx-ext:2.0.1'
 
     api netDependencies.retrofit
-    api netDependencies.retrofit2_converter
-    api netDependencies.okhttp3_logging
+    api 'com.squareup.retrofit2:converter-gson:2.9.0'
+    api 'com.squareup.okhttp3:logging-interceptor:4.8.0'
     //第三方控件
     api thirdPartyDependencies.utilcode //万能工具类
-    api supportDependencies.swiperefreshlayout
+    api 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     api thirdPartyDependencies.immersionbar
     api thirdPartyDependencies.immersionbar_components
     api thirdPartyDependencies.immersionbar_ktx

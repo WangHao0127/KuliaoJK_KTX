@@ -23,7 +23,7 @@ open class BaseViewModel : ViewModel() {
     //通用事件模型驱动(如：显示对话框、取消对话框、错误提示)
     val mStateLiveData = MutableLiveData<StateActionEvent>()
 
-    fun launch(cancel: Cancel, block: LaunchBlock) {//使用协程封装统一的网络请求处理
+    fun launch(cancel: Cancel?=null, block: LaunchBlock) {//使用协程封装统一的网络请求处理
         viewModelScope.launch {
             //ViewModel自带的viewModelScope.launch,会在页面销毁的时候自动取消请求,有效封装内存泄露
             try {
@@ -32,7 +32,7 @@ open class BaseViewModel : ViewModel() {
                 mStateLiveData.value = SuccessState
             } catch (e: Exception) {
                 when (e) {
-                    is CancellationException -> cancel.invoke(e)
+                    is CancellationException -> cancel?.invoke(e)
                     else -> mStateLiveData.value = ErrorState(e.message)
                 }
             }

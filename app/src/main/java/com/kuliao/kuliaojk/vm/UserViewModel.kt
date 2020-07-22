@@ -12,8 +12,13 @@ import com.kuliao.kuliaojk.reposotory.UserRepository
  */
 class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel() {
 
-    fun getUser(etName:String,pwd:String): LiveData<User> = emit {
-        mUserRepository.getUserInfo(etName,pwd)
+    fun getUser(etName: String, pwd: String): LiveData<User> = emit {
+        mUserRepository.getUserInfo(etName, pwd)
     }
 
+    fun saveLocalUser(user: User) {
+        launch {
+            mUserRepository.saveLocalUser(user)
+        }
+    }
 }

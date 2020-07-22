@@ -13,4 +13,8 @@ object APIPath {
             const val LOGIN = "app/user/login"
     }
 
+
+    object Account{
+        const val GET_BACK_LOGIN_PASSWORD = "Account/GetbackLoginPwd"
+    }
 }
