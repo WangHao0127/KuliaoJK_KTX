@@ -14,13 +14,13 @@ data class User(
     @PrimaryKey
     val userId: String,
 
-    val userName: String,
+    val userName: String?,
 
-    val zgha: String,
+    val zgha: String?,
 
-    val headPhoto: String,
+    val headPhoto: String?,
 
-    val nickName: String,
+    val nickName: String?,
 
-    val authToken: String
+    val authToken: String?
 ):Serializable

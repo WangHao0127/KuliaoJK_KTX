@@ -9,10 +9,13 @@ import com.kuliao.kuliaojk.data.User
  * Created On: 2020/06/24  16:02
  * Description:
  */
-class UserRepository(private val mUserApi: UserApi, val mUserDao: UserDao) {
+class UserRepository(private val mUserApi: UserApi, private val mUserDao: UserDao) {
 
     suspend fun getUserInfo(etName: String, pwd: String): User = mUserApi.login(etName, pwd)
 
-
     suspend fun saveLocalUser(user: User) = mUserDao.insert(user)
+
+    suspend fun getLocalUserInfo() = mUserDao.getUserInfo()
+
+    suspend fun deleteUser() = mUserDao.delete()
 }

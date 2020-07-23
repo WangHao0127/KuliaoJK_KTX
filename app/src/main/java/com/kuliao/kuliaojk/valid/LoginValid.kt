@@ -1,9 +1,9 @@
 package com.kuliao.kuliaojk.valid
 
 import android.content.Context
-import android.content.Intent
 import com.kuliao.baselib.ext.go
 import com.kuliao.baselib.valid.Valid
+import com.kuliao.kuliaojk.config.Settings
 import com.kuliao.kuliaojk.ui.login.LoginActivity
 
 /**
@@ -11,17 +11,14 @@ import com.kuliao.kuliaojk.ui.login.LoginActivity
  * Created On: 2020/06/24  14:21
  * Description:
  */
-class LoginValid(context: Context) : Valid {
-
-    private val mContext: Context = context
+class LoginValid(val context: Context) : Valid {
 
     override fun check(): Boolean {
-        return false
+        return !(Settings.Account.nickname.isNullOrBlank())
     }
 
     override fun doValid() {
-//        go<LoginActivity>(mContext)
-        mContext.startActivity(Intent(mContext, LoginActivity::class.java))
+        go<LoginActivity>(context)
     }
 
 }

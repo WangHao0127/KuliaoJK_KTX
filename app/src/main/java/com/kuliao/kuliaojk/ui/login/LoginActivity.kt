@@ -4,7 +4,6 @@ import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ToastUtils
 import com.kuliao.baselib.base.act.BaseVMActivity
 import com.kuliao.baselib.base.vm.BaseViewModel
-import com.kuliao.baselib.ext.goAndFinish
 import com.kuliao.baselib.ext.otherwise
 import com.kuliao.baselib.ext.yes
 import com.kuliao.kuliaojk.BuildConfig

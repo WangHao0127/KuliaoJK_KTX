@@ -16,7 +16,7 @@ import com.kuliao.kuliaojk.databinding.ActivitySplashBinding
 class SplashActivity : BaseDBActivity<ActivitySplashBinding>(),
     Animation.AnimationListener {
 
-    lateinit var mAnimation: Animation
+    private lateinit var mAnimation: Animation
 
     override fun getLayoutId() = layout.activity_splash
     override fun initViewsAndEvents() {
