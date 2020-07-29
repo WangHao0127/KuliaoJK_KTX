@@ -14,5 +14,8 @@
         <item name="colorPrimaryDark">@color/colorWhite</item>
         <item name="colorAccent">@color/colorWhite</item>
     </style>
-
+    <style name="pop_up_window_anim">
+        <item name="android:windowEnterAnimation">@anim/pop_up_anim_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_up_anim_out</item>
+    </style>
 </resources>

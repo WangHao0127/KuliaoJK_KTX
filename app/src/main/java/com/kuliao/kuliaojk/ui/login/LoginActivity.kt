@@ -36,6 +36,7 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding>() {
             name.isNotBlank().yes {
                 password.isNotBlank().yes {
                     mViewModel.getUser(name, password).observe(this, Observer<User> {
+                        mViewModel.mUserInfoModel.value = it
                         mViewModel.saveLocalUser(it)
                         finish()
                     })

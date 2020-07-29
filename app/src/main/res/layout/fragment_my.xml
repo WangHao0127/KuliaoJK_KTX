@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="user"
+            type="com.kuliao.kuliaojk.vm.UserViewModel" />
     </data>
 
     <com.kuliao.kuliaojk.weight.SwipeRefreshView
