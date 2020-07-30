@@ -48,8 +48,7 @@ class AdvertisementActivity : BaseDBActivity<ActivityAdvertisementBinding>() {
     private fun checkIsLogin() {
         lifecycleScope.launch {
             val user = mUserDao.getUserInfo()
-            (user != null).yes {
-                (user.nickName.isNullOrBlank()).no {
+                (user?.nickName.isNullOrBlank()).no {
                     Settings.Account.let { account ->
                         user.userId.let {
                             account.userId = it
@@ -67,7 +66,6 @@ class AdvertisementActivity : BaseDBActivity<ActivityAdvertisementBinding>() {
                             account.token = it
                         }
                     }
-                }
             }
 
             initView()
