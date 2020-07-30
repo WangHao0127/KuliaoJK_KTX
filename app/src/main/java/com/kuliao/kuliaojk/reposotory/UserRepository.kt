@@ -3,6 +3,7 @@ package com.kuliao.kuliaojk.reposotory
 import com.kuliao.kuliaojk.api.UserApi
 import com.kuliao.kuliaojk.dao.UserDao
 import com.kuliao.kuliaojk.data.User
+import com.kuliao.kuliaojk.http.BaseResponse
 
 /**
  * Author: WangHao
@@ -18,4 +19,6 @@ class UserRepository(private val mUserApi: UserApi, private val mUserDao: UserDa
     suspend fun getLocalUserInfo() = mUserDao.getUserInfo()
 
     suspend fun deleteUser() = mUserDao.delete()
+
+    suspend fun logout(params: MutableMap<String, Any>):BaseResponse = mUserApi.logout(params)
 }

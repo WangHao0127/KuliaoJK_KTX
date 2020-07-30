@@ -3,8 +3,12 @@ package com.kuliao.kuliaojk.vm
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kuliao.baselib.base.vm.BaseViewModel
+import com.kuliao.baselib.ext.yes
 import com.kuliao.kuliaojk.config.Settings
 import com.kuliao.kuliaojk.data.User
+import com.kuliao.kuliaojk.http.BaseResponse
+import com.kuliao.kuliaojk.net.APIPath
+import com.kuliao.kuliaojk.net.getParamsWithToken
 import com.kuliao.kuliaojk.reposotory.UserRepository
 
 /**
@@ -30,8 +34,19 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
      */
     fun saveLocalUser(user: User) {
         //保存在Preference中的信息，便于信息及时提取和应用
-        Settings.Account.nickname = user.nickName
-        Settings.Account.head_photo = user.headPhoto
+        (user.nickName?.isNotEmpty())?.yes {
+            Settings.Account.nickname = user.nickName
+        }
+        (user.headPhoto?.isNotEmpty())?.yes {
+            Settings.Account.head_photo = user.headPhoto
+        }
+        (user.userId.isNotEmpty()).yes {
+            Settings.Account.userId = user.userId
+        }
+        (user.authToken?.isNotEmpty())?.yes {
+            Settings.Account.token = user.authToken
+        }
+
         //用户信息保存在本地数据库
         launch {
             mUserRepository.deleteUser()
@@ -53,5 +68,12 @@ class UserViewModel(private val mUserRepository: UserRepository) : BaseViewModel
      */
     fun isLogged() {
         isLogged.value = !Settings.Account.nickname.isNullOrBlank()
+    }
+
+    /**
+     * 退出登录
+     */
+    fun logout(): LiveData<BaseResponse> = emit {
+        mUserRepository.logout(getParamsWithToken(APIPath.Basic.LOGOUT))
     }
 }

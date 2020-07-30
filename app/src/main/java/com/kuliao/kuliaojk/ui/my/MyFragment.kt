@@ -46,7 +46,9 @@ class MyFragment : BaseDBVMFragment<FragmentMyBinding>(), Action {
                     dialog.dismiss()
                 }
                 holder.setOnClickListener(R.id.btnConfirm) {
-                    ToastUtils.showShort("登出")
+                    mViewModel.logout().observe(this@MyFragment, Observer {
+                        mViewModel.isLogged.value = false
+                    })
                     dialog.dismiss()
                 }
             }
@@ -107,7 +109,12 @@ class MyFragment : BaseDBVMFragment<FragmentMyBinding>(), Action {
 //                    .placeholder(R.drawable.default_avatar)
 //                    .into(mBinding.ivAvatar)
 //
-        mBinding.username.text = Settings.Account.nickname
+        val showName = Settings.Account.nickname
+        (showName!!.isEmpty()).yes {
+            mBinding.username.text = resources.getString(R.string.login_status_none)
+        }.otherwise {
+            mBinding.username.text = showName
+        }
     }
 
 

@@ -1,10 +1,7 @@
 package com.kuliao.kuliaojk.http
 
 import com.blankj.utilcode.util.LogUtils
-import com.google.gson.Gson
-import com.google.gson.JsonParser
-import com.google.gson.JsonSyntaxException
-import com.google.gson.TypeAdapter
+import com.google.gson.*
 import okhttp3.ResponseBody
 import retrofit2.Converter
 
@@ -13,7 +10,10 @@ import retrofit2.Converter
  * Created On: 2020/07/15  10:14
  * Description:
  */
-class BaseGoonResponseBodyConverter<T>(private val goon: Gson, private val adapter: TypeAdapter<T>) :
+class BaseGoonResponseBodyConverter<T>(
+    private val goon: Gson,
+    private val adapter: TypeAdapter<T>
+) :
     Converter<ResponseBody, T> {
 
     override fun convert(value: ResponseBody): T? {
@@ -22,16 +22,16 @@ class BaseGoonResponseBodyConverter<T>(private val goon: Gson, private val adapt
         val jsonObject = JsonParser().parse(jsonReader).asJsonObject
         value.close()
 
-        val response = goon.fromJson(jsonObject, BaseResponse::class.java)
+        val response: BaseResponse = goon.fromJson(jsonObject, BaseResponse::class.java)
 
-        var element = jsonObject.get("dataObject")
+        var element: JsonElement = jsonObject.get("dataObject")
 
         if (response != null && !response.isSuccessful()) {
             val errorInfo = try {
                 goon.fromJson(element, String::class.java)
             } catch (e: JsonSyntaxException) {
                 LogUtils.d(e)
-                element?.let { toString() }
+                element?.toString()
             }
 
             val e = ErrorResponseException(response, errorInfo.toString())
