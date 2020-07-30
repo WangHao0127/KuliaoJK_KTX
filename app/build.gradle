@@ -127,11 +127,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(':baseLib')
-
+    api project(':dialog')
     //room注解，必须放在主module，否则报错
 //    annotationProcessor jetPack.room_compiler
     //协程 + room
-    implementation "androidx.room:room-runtime:2.2.5"
+    api "androidx.room:room-runtime:2.2.5"
     kapt "androidx.room:room-compiler:2.2.5"
-    implementation "androidx.room:room-ktx:2.2.5"
+    api "androidx.room:room-ktx:2.2.5"
 }

@@ -1,22 +1,28 @@
 package com.kuliao.kuliaojk.ui.my
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.kuliao.baselib.base.fragment.BaseDBVMFragment
 import com.kuliao.baselib.ext.otherwise
 import com.kuliao.baselib.ext.yes
 import com.kuliao.baselib.valid.Action
 import com.kuliao.baselib.valid.SingleCall
+import com.kuliao.dialog.CommonDialog
+import com.kuliao.dialog.extensions.bindingListenerFun
+import com.kuliao.dialog.extensions.convertListenerFun
+import com.kuliao.dialog.extensions.createDialog
+import com.kuliao.dialog.extensions.dataConvertListenerFun
+import com.kuliao.dialog.other.DialogGravity
 import com.kuliao.kuliaojk.R
 import com.kuliao.kuliaojk.config.Settings
 import com.kuliao.kuliaojk.databinding.FragmentMyBinding
+import com.kuliao.kuliaojk.databinding.PopLogoutBinding
 import com.kuliao.kuliaojk.valid.LoginValid
 import com.kuliao.kuliaojk.vm.UserViewModel
-import com.kuliao.kuliaojk.weight.CustomPopupWindow
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -31,7 +37,21 @@ class MyFragment : BaseDBVMFragment<FragmentMyBinding>(), Action {
 
     override fun getViewModel() = mViewModel
 
-    private lateinit var popLogout: CustomPopupWindow
+    private val dialog: CommonDialog by lazy {
+        createDialog {
+            layoutId = R.layout.pop_logout
+            isFullHorizontal = true
+            convertListenerFun { holder, dialog ->
+                holder.setOnClickListener(R.id.btnCancel) {
+                    dialog.dismiss()
+                }
+                holder.setOnClickListener(R.id.btnConfirm) {
+                    ToastUtils.showShort("登出")
+                    dialog.dismiss()
+                }
+            }
+        }
+    }
 
     override fun onResume() {
         super.onResume()
@@ -45,7 +65,11 @@ class MyFragment : BaseDBVMFragment<FragmentMyBinding>(), Action {
                 mBinding.logoutTv.let { its ->
                     its.visibility = View.VISIBLE
                     its.setOnClickListener {
-                        popLogout.showAtLocation(it)
+                        dialog.showOnWindow(
+                            requireActivity().supportFragmentManager,
+                            DialogGravity.CENTER_BOTTOM,
+                            R.style.BottomTransAlphaAcceAnimation
+                        )
                     }
                 }
 
@@ -91,20 +115,6 @@ class MyFragment : BaseDBVMFragment<FragmentMyBinding>(), Action {
 
     override fun initData() {
         mViewModel.getLocalUserInfo()
-        initDialog()
-    }
-
-
-    private fun initDialog() {
-        val popView = LayoutInflater.from(requireActivity()).inflate(R.layout.pop_logout, null)
-        popView.findViewById<Button>(R.id.btnConfirm).setOnClickListener {
-            popLogout.onDismiss()
-
-        }
-        popView.findViewById<Button>(R.id.btnCancel).setOnClickListener { popLogout.onDismiss() }
-
-        popLogout = CustomPopupWindow.PopupWindowBuilder(context).setView(popView, true)
-            .create()
     }
 
     override fun call() {

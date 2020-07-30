@@ -1,64 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    android:paddingLeft="@dimen/dp_10"
-    android:paddingRight="@dimen/dp_10"
-    android:paddingBottom="@dimen/dp_8">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
 
-    <LinearLayout
-        android:id="@+id/layout"
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_solid_ff_radius_10"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@android:color/transparent"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_8">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dp_23"
-            android:layout_marginBottom="@dimen/dp_13"
-            android:text="@string/logout_pop_title"
-            android:textColor="@color/colorBlack"
-            android:textSize="@dimen/sp_17" />
 
-        <View
+        <LinearLayout
+            android:id="@+id/layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_06"
-            android:background="?android:attr/listDivider" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_solid_ff_radius_10"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_23"
+                android:layout_marginBottom="@dimen/dp_13"
+                android:text="@string/logout_pop_title"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/sp_17" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_06"
+                android:background="?android:attr/listDivider" />
+
+            <Button
+                android:id="@+id/btnConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:paddingTop="@dimen/dp_16"
+                android:paddingBottom="@dimen/dp_19"
+                android:text="@string/logout_pop_confirm"
+                android:textColor="@color/fontColor_gray_66"
+                android:textSize="@dimen/dp_17" />
+
+        </LinearLayout>
 
         <Button
-            android:id="@+id/btnConfirm"
+            android:id="@+id/btnCancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:paddingTop="@dimen/dp_16"
-            android:paddingBottom="@dimen/dp_19"
-            android:text="@string/logout_pop_confirm"
-            android:textColor="@color/fontColor_gray_66"
-            android:textSize="@dimen/dp_17" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_6"
-        android:background="@drawable/bg_solid_ff_radius_10"
-        android:paddingTop="@dimen/dp_19"
-        android:paddingBottom="@dimen/dp_17"
-        android:text="@string/cancel"
-        android:textColor="@color/fontPrimary_hint"
-        android:textSize="@dimen/sp_17"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginTop="@dimen/dp_6"
+            android:background="@drawable/bg_solid_ff_radius_10"
+            android:paddingTop="@dimen/dp_19"
+            android:paddingBottom="@dimen/dp_17"
+            android:text="@string/cancel"
+            android:textColor="@color/fontPrimary_hint"
+            android:textSize="@dimen/sp_17"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

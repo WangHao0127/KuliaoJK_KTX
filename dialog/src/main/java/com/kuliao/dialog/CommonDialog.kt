@@ -119,7 +119,7 @@ open class CommonDialog : DialogFragment() {
     /*懒加载，根据dialogOptions.duration来延迟加载实现懒加载*/
     open fun onLazy() {
         (dialogOptions.bindingListener != null).yes {
-//            dataConvertView(dialogBinding!!, this)
+            dataConvertView(dialogBinding!!, this)
         }.otherwise {
             convertView(ViewHolder(rootView!!), this)
         }
