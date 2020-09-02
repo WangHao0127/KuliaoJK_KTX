@@ -108,7 +108,7 @@ class MyFragment : BaseDBVMFragment<FragmentMyBinding>(), Action {
 //                    .error(R.drawable.default_avatar)
 //                    .placeholder(R.drawable.default_avatar)
 //                    .into(mBinding.ivAvatar)
-//
+// 
         val showName = Settings.Account.nickname
         (showName!!.isEmpty()).yes {
             mBinding.username.text = resources.getString(R.string.login_status_none)

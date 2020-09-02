@@ -12,6 +12,7 @@ import com.kuliao.baselib.base.vm.BaseViewModel
 import com.kuliao.baselib.base.vm.ErrorState
 import com.kuliao.baselib.base.vm.LoadState
 import com.kuliao.baselib.base.vm.SuccessState
+import com.kuliao.baselib.ext.yes
 
 /**
  * Author: WangHao
@@ -21,6 +22,7 @@ import com.kuliao.baselib.base.vm.SuccessState
 abstract class BaseDBVMFragment<DB : ViewDataBinding> : BaseFragment() {
 
     lateinit var mBinding: DB
+    private var isFirstLoad = true//是否是第一次加载
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,8 +44,11 @@ abstract class BaseDBVMFragment<DB : ViewDataBinding> : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        initView()
-        initData()
+        (isFirstLoad).yes {
+            initView()
+            initData()
+            isFirstLoad = false
+        }
     }
 
     abstract fun getViewModel(): BaseViewModel

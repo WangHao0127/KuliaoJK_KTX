@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="250pt"
+            android:layout_height="300pt"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:layout_width="250pt"
+            android:layout_height="300pt"
+            android:background="@color/colorWhite" />
+    </LinearLayout>
+</layout>

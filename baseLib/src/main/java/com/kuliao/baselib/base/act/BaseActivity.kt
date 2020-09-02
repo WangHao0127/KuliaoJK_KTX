@@ -1,9 +1,11 @@
 package com.kuliao.baselib.base.act
 
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.blankj.utilcode.util.AdaptScreenUtils
 import com.gyf.immersionbar.ImmersionBar
 import com.gyf.immersionbar.ktx.immersionBar
 
@@ -25,6 +27,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
         initDBorVM()
         initViewsAndEvents()
+    }
+
+    override fun getResources(): Resources {
+        return AdaptScreenUtils.adaptWidth(super.getResources(), 500)
     }
 
     private fun initImmersionBar() {

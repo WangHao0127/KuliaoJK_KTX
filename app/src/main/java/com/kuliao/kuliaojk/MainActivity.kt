@@ -1,8 +1,10 @@
 package com.kuliao.kuliaojk
 
+import android.content.res.Resources
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.blankj.utilcode.util.AdaptScreenUtils
 import com.google.android.material.tabs.TabLayoutMediator
 import com.kuliao.baselib.base.act.BaseDBActivity
 import com.kuliao.kuliaojk.databinding.ActivityMainBinding
@@ -35,6 +37,7 @@ class MainActivity : BaseDBActivity<ActivityMainBinding>() {
     override fun initViewsAndEvents() {
         mBinding.vp.run {
             isUserInputEnabled = false
+            offscreenPageLimit = titles.size //让ViewPager2预先创建出所有的Fragment，防止切换造成的频繁销毁和创建
             adapter = object : FragmentStateAdapter(this@MainActivity) {
                 override fun getItemCount() = titles.size
 

@@ -2,6 +2,8 @@ package com.kuliao.kuliaojk
 
 import android.app.Application
 import android.content.ContextWrapper
+import android.content.res.Resources
+import com.blankj.utilcode.util.AdaptScreenUtils
 import com.kuliao.kuliaojk.di.appModule
 import org.koin.core.context.startKoin
 
@@ -19,8 +21,6 @@ class App : Application() {
         mApplication = this
         startKoin { modules(appModule) }
     }
-
-
 }
 
 object AppContext : ContextWrapper(mApplication)//ContextWrapper对Context上下文进行包装(装饰者模式)
