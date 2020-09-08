@@ -106,7 +106,9 @@ android {
         // 官网
         //offical {}
     }
-
+    dexOptions{
+        javaMaxHeapSize "4g"
+    }
     // 渠道号
     productFlavors.all { flavor ->
         flavor.manifestPlaceholders = [APP_CHANNEL_VALUE: name]

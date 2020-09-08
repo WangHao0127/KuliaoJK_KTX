@@ -1,8 +1,10 @@
 package com.kuliao.kuliaojk
 
 import android.app.Application
+import android.content.Context
 import android.content.ContextWrapper
 import android.content.res.Resources
+import androidx.multidex.MultiDex
 import com.blankj.utilcode.util.AdaptScreenUtils
 import com.kuliao.kuliaojk.di.appModule
 import org.koin.core.context.startKoin
@@ -15,6 +17,11 @@ import org.koin.core.context.startKoin
 lateinit var mApplication: Application
 
 class App : Application() {
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+    }
 
     override fun onCreate() {
         super.onCreate()
