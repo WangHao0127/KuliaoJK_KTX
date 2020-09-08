@@ -31,7 +31,7 @@ abstract class BaseDBVMFragment<DB : ViewDataBinding> : BaseFragment() {
     ): View? {
         if (mRootView == null) {
             mBinding = DataBindingUtil.inflate(inflater, getLayoutRes(), container, false)
-            // 让xml内绑定的LiveData和Observer建立连接，让LiveData能感知Activity的生命周期
+            // 让xml内绑定的LiveData和Observer建立连接，让LiveData能感知Activity的生命周期.
             mBinding.lifecycleOwner = this
             mRootView = mBinding.root
         }
