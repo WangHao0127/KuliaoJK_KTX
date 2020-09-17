@@ -15,6 +15,7 @@ import com.kuliao.kuliaojk.ui.sort.SortFragment
 import kotlinx.android.synthetic.main.tab_text_icon.view.*
 /**
  * 功能开发完毕
+ * tag问题
  * */
 class MainActivity : BaseDBActivity<ActivityMainBinding>() {
 
