@@ -13,7 +13,9 @@ import com.kuliao.kuliaojk.ui.home.HomeFragment
 import com.kuliao.kuliaojk.ui.my.MyFragment
 import com.kuliao.kuliaojk.ui.sort.SortFragment
 import kotlinx.android.synthetic.main.tab_text_icon.view.*
-
+/**
+ * 功能开发完毕
+ * */
 class MainActivity : BaseDBActivity<ActivityMainBinding>() {
 
     private val titles =
